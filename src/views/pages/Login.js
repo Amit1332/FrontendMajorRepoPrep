@@ -39,12 +39,12 @@ const Login = () => {
     const handleSubmit = (e)=>{
         e.preventDefault()
         if(state){
-                dispatch(HelperFunction.postData(`user/signup`,data,"user"))  
+                dispatch(HelperFunction.postData(`${process.env.REACT_APP_BASE_URL}/user/signup`,data,"user"))  
               
                            
       }
         else{
-         dispatch(HelperFunction.postData(`user/login`,data,"user"))
+         dispatch(HelperFunction.postData(`${process.env.REACT_APP_BASE_URL}/user/login`,data,"user"))
         }
        
         if(isAuthenticate){
@@ -64,7 +64,7 @@ const Login = () => {
 useEffect(()=>{
     if(token){
         localStorage.setItem("prepclone",token)
-        dispatch(HelperFunction.loadUser(`user/`,token))
+        dispatch(HelperFunction.loadUser(`${process.env.REACT_APP_BASE_URL}/user/`,token))
         Navigate('/')
     }
 },[token,userData])

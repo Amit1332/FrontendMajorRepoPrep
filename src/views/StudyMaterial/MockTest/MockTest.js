@@ -11,7 +11,7 @@ const MockTest = () => {
   const data = useSelector((state)=>state.data.test)
 
 useEffect(() => {
-  dispatch(HelperFunction.fetchData('test',"test"))
+  dispatch(HelperFunction.fetchData(`${process.env.REACT_APP_BASE_URL}/test`,"test"))
 
 }, [])
 

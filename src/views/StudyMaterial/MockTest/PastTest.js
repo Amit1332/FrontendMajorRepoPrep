@@ -16,7 +16,7 @@ const PastTest = ({data}) => {
 
         try {
           const stripe = await loadStripe('pk_test_51OJiJgSHqKSNDjqqHKxgDaTSizL4h16CRajI3zfwiZLZDF76n4MAZok17F7z48Y7XHvRxdZjavEJVHINlFBsEezb007QGqdmuZ');
-          const res = await axios.post(`order/checkout`,[{testId:item._id, name:item.name, price:Number(item.price),quantity:1}],{headers: {
+          const res = await axios.post(`${process.env.REACT_APP_BASE_URL}/order/checkout`,[{testId:item._id, name:item.name, price:Number(item.price),quantity:1}],{headers: {
             'Authorization': `Bearer ${token}`,
           }})
           const result = stripe.redirectToCheckout({

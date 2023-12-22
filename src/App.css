@@ -180,11 +180,10 @@ height: auto;
 
 
 .dashboard-sec{
-  height: 100vh;
+  min-height: 100vh;
   width: 100%;
   display: flex;
-  flex-wrap: wrap;
-
+  
 }
 
 .dashboard-sec .left{
@@ -226,6 +225,7 @@ cursor: pointer;
   display: flex;
   padding: 30px;
   gap: 20px;
+  flex-wrap: wrap;
 
   }
 
@@ -363,6 +363,226 @@ width: 30px;
     width: 30px;
   }
 }
+
+
+
+
+
+
+
+
+
+.home .instructor{
+  background-color: #BCF2FB;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 100%;
+  padding: 50px 0px 0px 0px;
+}
+
+.home .instructor img{
+
+width: 80%;
+
+}
+
+
+.home .placed-student{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+}
+.home .placed-student img{
+  width: 100%;
+  }
+
+
+.home .college-banner{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding:  0px;
+
+
+}
+
+
+.home .college-banner .card{
+  background-image: url("../public/images/home3.webp");
+  height: 360px;
+  width: 80%;
+  box-shadow: 0px 0px 30px rgb(228, 226, 226);
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  border-radius: 20px;
+  padding:50px 30px;
+}
+
+
+.home .college-banner .card h1{
+font-weight: 500;
+color: #004461;
+font-size: 35px;
+
+}
+
+
+.home .college-banner .card h2{
+
+  font-weight: 500;
+  color:#00A5EC;
+  margin-top: 30px;
+  width: 40%;
+  font-size: 25px;
+}
+
+.home .college-banner .card .button{
+  height: 40px;
+  padding: 0px 50px;
+  background: linear-gradient(90deg, #F1187A,#ec5660);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 600;
+  color: white;
+  width: fit-content;
+  border-radius: 5px;
+  margin-top: 50px;
+}
+
+
+
+.home .mentor-colleges{
+  text-align: center;
+  padding: 50px 0px;
+}
+
+
+.home .mentor-colleges h1{
+margin: 20px 0px;
+color: rgb(81, 79, 79);
+
+
+}
+.home .mentor-colleges p{
+   margin: 20px 0px  50px 0px;
+   color: gray;
+   font-size: 17px;
+
+}
+
+.home .mentor-colleges .cards{
+align-items: center;
+justify-content: center;
+display: flex;
+gap: 50px;
+flex-wrap: wrap;
+
+}
+
+.home .mentor-colleges .cards .card{
+width: 380px;
+/* height: 500px; */
+display: flex;
+flex-direction: column;
+align-items: center;
+box-shadow: 0px 0px 30px rgb(209, 206, 206);
+
+border-radius: 5px;
+
+}
+
+.home .mentor-colleges .cards .card h3{
+  font-size: 20px;
+  color: rgb(58, 57, 57);
+  margin-top: 20px;
+  padding:0px 10px;
+  height: 70px;
+
+}
+
+
+.home .mentor-colleges .cards .card p{
+height: 90px;
+margin-top: 20px;
+color: gray;
+font-size: 17px;
+width: 80%;
+
+
+}
+
+
+.home .mentor-colleges .cards .card .button{
+  height: 40px;
+  padding: 0px 50px;
+  border-radius: 5px;
+  background-color: #00A5EC;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+  font-size: 18px;
+  margin: 0px 0px 50px 0px;
+}
+
+
+
+
+.popular-blogs{
+  padding: 80px 0px;
+  width: 100%;
+
+  background-color: #FDF0D7;
+}
+
+
+.popular-blogs .cards{
+  margin-top: 50px;
+}
+
+
+
+.popular-blogs .card{
+
+
+background-color: white;
+
+}
+
+.popular-blogs .card .card-img{
+
+  width: 100%;
+
+
+}
+.popular-blogs .card .card-img img{
+
+  width: 100%;
+
+
+}
+.popular-blogs .card p{
+font-size: 20px !important;
+color: black !important;
+text-align: left;
+
+}
+
+.popular-blogs .card .button{
+background-color:transparent !important;
+color: #00A5EC !important;
+
+margin-bottom: 20px !important;
+}
+
 
 
 
@@ -1299,6 +1519,7 @@ width: 45%;
                     /* align-items: center; */
                     /* justify-content: center; */
                     flex-direction: column;
+                    z-index: 999999999999;
                 }
 
                 .dashboartab h3{
@@ -4398,7 +4619,12 @@ color: white;
     padding: 30px;
   }
 
-
+  .dashboard-sec .left{
+    width: 20%;
+  }
+  .dashboard-sec .right{
+    width: 80%;
+  }
   .navbar .logo{
     justify-content: flex-start;
     padding: 0px 30px;
@@ -4563,6 +4789,10 @@ width: 90% !important;
     padding: 35px !important;
 }
 
+
+.dashboard-sec{
+  min-height: auto !important;
+}
 .master-stack .enroll-batch{
   height: 200px !important;
 }
@@ -5066,6 +5296,12 @@ flex-direction: column;
 
 
 @media (max-width:768px) {
+  .dashboard-sec .left{
+    width: 30%;
+  }
+  .dashboard-sec .right{
+    width: 70%;
+  }
   .login-page .right{
     width: 80% !important;
     height: auto !important;
@@ -5162,6 +5398,22 @@ flex-direction: column;
 
 
 @media (max-width:540px) {
+
+  .dashboard-sec{
+    flex-direction: column;
+  }
+  .dashboard-sec .left{
+    width: 100%;
+  }
+
+  .dashboard-sec .right{
+    width: 100%;
+    /* align-items: center; */
+    justify-content: center;
+  }
+  .home .college-banner{
+    display: none !important;
+  }
  
   .login-page .right{
     width: 100% !important;

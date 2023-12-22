@@ -11,7 +11,7 @@ const Dashboard = () => {
     const Navigate = useNavigate()
 
     useEffect(()=>{
-        dispatch(HelperFunction.fetchData('order','order',token))
+        dispatch(HelperFunction.fetchData(`${process.env.REACT_APP_BASE_URL}/order`,'order',token))
         if(!token){
             Navigate('/')
         }
