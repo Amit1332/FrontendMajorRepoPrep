@@ -18,6 +18,33 @@ const Testmonial = () => {
         slidesToScroll: 1,
         prevArrow: <PrevArrow />,
         nextArrow: <NextArrow />,
+        responsive: [
+          {
+            breakpoint: 1025,
+            settings: {
+              slidesToShow: 2,
+              slidesToScroll: 2,
+              dots: false
+            }
+          },
+          {
+            breakpoint: 850,
+            settings: {
+              arrows:false,
+              slidesToShow: 2,
+              slidesToScroll: 2,
+              initialSlide: 2
+            }
+          },
+          {
+            breakpoint: 540,
+            settings: {
+              arrows:false,
+              slidesToShow: 1,
+              slidesToScroll: 1
+            }
+          }
+        ]
 
       };
   return (

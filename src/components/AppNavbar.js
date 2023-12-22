@@ -1,20 +1,48 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import logo  from '../assets/images/logoPrepBytes.svg'
 import nav from '../_nav'
 import { NavLink, useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { logoutUser } from '../store/Slice'
 const AppNavbar = () => {
   const Navigate = useNavigate()
+  const dispatch =useDispatch()
+  const {data}= useSelector((state)=>state.loadUser)
+
+  const [isLoggedIn,setIsLoggedIn]=useState(false)
+
+  const logout =()=>{
+    dispatch(logoutUser())
+    setIsLoggedIn(false)
+  }
+
+  const isToken = localStorage.getItem("prepclone")
+
+
+  useEffect(()=>{
+    if(isToken){
+      setIsLoggedIn(true)
+    }
+ 
+
+  },[dispatch,isLoggedIn])
+
+  const [isShow, setIsShow]=useState(false)
+
   return (
+    <>
     <div className='navbar'>
          <div className="logo">
           <img src={logo} alt=""  className='h-10' onClick={()=>Navigate("/")}/>
          </div>
         <div className="right-int">
-        <div className="login">
-            <div className="btn" onClick={()=>Navigate("/login")}>Login</div>
-            <div className="btn" onClick={()=>Navigate("/login")}>Signup</div>
+        {
+          !isLoggedIn&&<div className="login">
+          <div className="btn" onClick={()=>Navigate("/login")}>Login</div>
+          <div className="btn" onClick={()=>Navigate("/login")}>Signup</div>
 
-          </div>
+        </div>
+        }
         <div className="nav-items">
          
         <div className="routes d-flex">
@@ -48,11 +76,14 @@ const AppNavbar = () => {
               }
           
           </div>
-              {/* <div className="dashboard">
-                 <div className="box">A</div>
-                  <div className='color-primary fw-600'>Hi Amitesh</div>
-              </div> */}
+              {
+                isLoggedIn && <div className="dashboard" onClick={()=>isShow===false ? setIsShow(true):setIsShow(false)}>
+                <div className="box">{data&&data.name&&data&&data.name[0].toUpperCase()}</div>
+                 <div className='color-primary fw-600'>Hi {data&&data.name&&data&&data.name.split(' ')[0]}</div>
+             </div>
+              }
 
+             
         </div>
         </div>
 
@@ -60,12 +91,25 @@ const AppNavbar = () => {
 
 
 
-
+      
 
 
 
 
     </div>
+
+{
+  isShow && isLoggedIn?
+  <div className='container dashboartab'>
+  <h3 onClick={()=>Navigate('/dashboard')}><i class="ri-dashboard-line" ></i> My Dashboard</h3>
+  <h3 onClick={logout}>Logout</h3>
+
+</div>
+:''
+
+}
+   
+    </>
   )
 }
 

@@ -1,8 +1,49 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import futurskill from "../../../assets/images/futureskill.svg"
 import banner from "../../../assets/images/fullstackbanner.png"
-
+import { useDispatch, useSelector } from 'react-redux'
+import HelperFunction from '../../../store/actions'
+import dataFunc from '../../../helper/dateFunc'
+import {loadStripe} from '@stripe/stripe-js';
+import axios from 'axios'
 const FirstSec = () => {
+    const dispatch =useDispatch()
+    const data = useSelector((state)=>state.data.courses)
+//   useEffect(() => {
+//     dispatch(HelperFunction.fetchData('courses',"courses"))
+  
+//   }, [])
+
+
+
+
+const [items,setItem] =useState({
+    courseId:'',
+    name:'',
+    price:'',
+    quantity:1
+
+  })
+
+  let token = localStorage.getItem('prepclone')
+
+  const checkout  =async ()=>{
+     
+    try {
+      const stripe = await loadStripe('pk_test_51OJiJgSHqKSNDjqqHKxgDaTSizL4h16CRajI3zfwiZLZDF76n4MAZok17F7z48Y7XHvRxdZjavEJVHINlFBsEezb007QGqdmuZ');
+      const res = await axios.post(`order/checkout`,[items],{headers: {
+        'Authorization': `Bearer ${token}`,
+      }})
+      const result = stripe.redirectToCheckout({
+        sessionId:res.data.id
+
+      })
+     
+      
+    } catch (error) {
+      console.log(error);
+    }
+  }
   return (
     <div className='first-sec'>
         <div className="top">
@@ -42,24 +83,26 @@ const FirstSec = () => {
                     <p>SELECT BATCH</p>
                 </div>
                 <div className="bb-x">
-                    <label className="card" htmlFor='batch1'>
+                  {data&&data.map((elem)=>{
+                    return(
+                        <>
+                          <label className={`card ${elem._id==items.courseId ? 'bg-primary':''}`} htmlFor='batch1' onClick={()=>setItem({courseId:elem._id,name:elem.name, price:Number(elem.price),quantity:1})}>
                       <div className="input-ra">
-                      <input type="radio" id='batch1' /> <span>1st May</span>
+                      <input type="radio" id='batch1' name={elem.name} /> <span>{dataFunc(elem.start_data)}</span>
                       </div>
                         <p>Enrollment Started</p>
                     </label>
-                    <label className="card" htmlFor='batch2'>
-                    <div className="input-ra">
-                        <input type="radio" id='batch2' /><span>15th May</span>
-                        </div>
-                        <p>Enrollment Started</p>
-                    </label>
+                        
+                        </>
+                    )
+                  })}
+                 
 
                 </div>
                 <div className="bb-x">
-                    <h3>₹ 30000</h3>
+                    <h3>₹ {items.price? items.price :'00000'}</h3>
                     <div className="button">
-                        <div className="btn">Enroll Now </div>
+                        <div className="btn"  onClick={()=>checkout()}>Enroll Now </div>
                         <div className="btn"> Try for Free</div>
 
                     </div>

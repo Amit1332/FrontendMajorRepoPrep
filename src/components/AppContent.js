@@ -4,14 +4,11 @@ import { Route, Routes } from 'react-router-dom'
 import loader from '../assets/images/loader.gif'
 
 const loading = (
-  <div className='h-100 d-flex align-items-center justify-content-center w-100 pos-absolute'>
-  <img src={loader} alt="" className='w-9' />
-</div>
+  <img src="/images/pblogo.png" alt="" className='loader' />
 )
 const AppContent = () => {
   return (
     <div>
-
 <Suspense fallback={loading}>
 <Routes>
   {

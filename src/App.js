@@ -1,20 +1,32 @@
 import './App.css';
-import React, {Suspense } from 'react'
+import React, {Suspense, useEffect } from 'react'
 import { HashRouter, Route, Routes } from 'react-router-dom'
 import loader from './assets/images/loader.gif'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import PaymentSuccess from './Payment/PaymentSuccess';
+import PaymentCancel from './Payment/PaymentCancel';
+import HelperFunction from './store/actions';
+import { useDispatch } from 'react-redux';
 
 const loading = (
-  <div className='h-100 d-flex align-items-center justify-content-center w-100 pos-absolute'>
-  <img src={loader} alt="" className='w-9' />
-</div>
+  <img src="/images/pblogo.png" alt="" className='loader' />
+
 )
 
 const DefaultLayout = React.lazy(()=>import('./layout/DefaultLayout'))
 const Project = React.lazy(()=>import('./views/Projects/Project'))
 
 function App() {
+  const dispatch = useDispatch()
+        
+  let token =localStorage.getItem("prepclone")
+  useEffect(()=>{
+    if(token){
+        dispatch(HelperFunction.loadUser(`user/`,token))
+    }
+},[token])
+
   return (
    <HashRouter>
  
@@ -29,8 +41,8 @@ function App() {
 
 
 
-            <Route exact path="/500" name="Page 500" element='' />
-            <Route exact path="/404" name="Page 404" element='' />
+            <Route path="/payment/success" name="Success" element={<PaymentSuccess/>}/>
+            <Route  path="/payment/cancel" name="Cancel" element={<PaymentCancel/>} />
 
             <Route path="*" name="Home" element={<DefaultLayout />} />
 
