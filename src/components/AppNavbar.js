@@ -4,6 +4,7 @@ import nav from '../_nav'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { logoutUser } from '../store/Slice'
+import HelperFunction from '../store/actions'
 const AppNavbar = () => {
   const Navigate = useNavigate()
   const dispatch =useDispatch()
@@ -12,7 +13,9 @@ const AppNavbar = () => {
   const [isLoggedIn,setIsLoggedIn]=useState(false)
 
   const logout =()=>{
-    dispatch(logoutUser())
+    dispatch(logoutUser(Navigate))
+    dispatch(HelperFunction.clearError('user'))
+
     setIsLoggedIn(false)
   }
 
@@ -25,7 +28,7 @@ const AppNavbar = () => {
     }
  
 
-  },[dispatch,isLoggedIn])
+  },[dispatch,isLoggedIn,data])
 
   const [isShow, setIsShow]=useState(false)
 

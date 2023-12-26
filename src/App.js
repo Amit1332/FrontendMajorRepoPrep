@@ -8,6 +8,7 @@ import PaymentSuccess from './Payment/PaymentSuccess';
 import PaymentCancel from './Payment/PaymentCancel';
 import HelperFunction from './store/actions';
 import { useDispatch } from 'react-redux';
+import ProtectedRoute from './components/ProtectedRoute';
 
 const loading = (
   <img src="/images/pblogo.png" alt="" className='loader' />
@@ -33,12 +34,12 @@ function App() {
  
       <Suspense fallback={loading}>
         <Routes>
-            <Route exact path="/project/html" name="html" element={<Project type="html"/>} />
-            <Route exact path="/project/css" name="css" element={<Project type="css" />} />
-            <Route exact path="/project/javascript" name="javascript" element={<Project type="javascript" />} />
-            <Route exact path="/project/react" name="react" element={<Project type="react" />} />
-            <Route exact path="/project/nodejs" name="nodejs" element={<Project type="nodejs"/>} />
-            <Route exact path="/project/mongodb" name="mongodb" element={<Project type="mongodb"/>} />
+            <Route exact path="/project/html" name="html" element={<ProtectedRoute Component={Project} type="html"/> }/>
+            <Route exact path="/project/css" name="css" element={<ProtectedRoute Component={Project} type="css" />} />
+            <Route exact path="/project/javascript" name="javascript" element={<ProtectedRoute Component={Project} type="javascript" />} />
+            <Route exact path="/project/react" name="react" element={<ProtectedRoute Component={Project} type="react" />} />
+            <Route exact path="/project/nodejs" name="nodejs" element={<ProtectedRoute Component={Project} type="nodejs"/>} />
+            <Route exact path="/project/mongodb" name="mongodb" element={<ProtectedRoute Component={Project} type="mongodb"/>} />
 
 
 

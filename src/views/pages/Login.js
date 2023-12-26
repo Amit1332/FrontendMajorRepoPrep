@@ -18,9 +18,15 @@ const Login = () => {
     const [hide,setHide]= useState(true)
     const {isAuthenticate }= useSelector((state)=>state.loadUser)
 
-    const userData = useSelector((state)=>state.data.user)
+    const {user,isLoading,} = useSelector((state)=>state.data)
 
-    const token =  userData&&userData.token
+    const token = user&&user.token
+    let info  =user&&user.info
+    const msg  =user&&user.msg
+
+
+  console.log(info);
+
     
     const [data, setData]= useState({
         name:"",
@@ -67,7 +73,7 @@ useEffect(()=>{
         dispatch(HelperFunction.loadUser(`${process.env.REACT_APP_BASE_URL}/user/`,token))
         Navigate('/')
     }
-},[token,userData])
+},[token,user])
 
   return (
     <div className='container login-page'>
@@ -122,8 +128,14 @@ useEffect(()=>{
         <div className="right">
             <div className="card">
                 <div className="button-toggle">
-                    <div className={`btn ${state ? 'active':''}`} onClick={()=>setState(true)}>SIGNUP </div>
-                    <div className={`btn ${!state ? 'active':''}`} onClick={()=>setState(false)}>LOGIN</div>
+                    <div className={`btn ${state ? 'active':''}`} onClick={()=>{
+                        setState(true)
+                       dispatch(HelperFunction.clearError('user'))
+                        }}>SIGNUP </div>
+                    <div className={`btn ${!state ? 'active':''}`} onClick={()=>{
+                        setState(false)
+                        dispatch(HelperFunction.clearError('user'))
+                    }}>LOGIN</div>
 
                 </div>
                 <h2 className='text-center'>{state ? "Create your new account":"Sign In to your account"} </h2>
@@ -210,12 +222,10 @@ useEffect(()=>{
                   
 
                     <div className="handlebtn">
-                    <div className="button" onClick={handleSubmit}>{state ? "SIGN UP" :"SIGN IN"}</div>
-                    {
-                        !state ?
-                        <div className="button">Login Via OTP</div>
-                        : ''
-                    }
+                    <div className="button" onClick={handleSubmit}>{state ? isLoading?"Registering..":"SIGN UP" : isLoading?"Signing In..":"SIGN IN"}</div>
+                  
+                        <div className="button" style={{ border: `${info? '1px solid orangered':''}`,color: `${info? 'orangered':''}`}}>{state? info? info:"Notification" : info? info:"Login Via Otp" }</div>
+                      
                     
                     </div>
                    

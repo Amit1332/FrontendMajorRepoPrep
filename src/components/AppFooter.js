@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import yt from '../assets/images/yt.png'
 import fb from '../assets/images/fb.png'
 import inst from '../assets/images/inst.png'
@@ -11,6 +11,7 @@ import BottomFooter from './header/BottomFooter'
 
 
 const AppFooter = () => {
+  const navigate =useNavigate()
   return (
  <>
    <div className="footer-main">
@@ -67,13 +68,12 @@ netstat command linux</p>
 <div className="third section">
 <h3> QUICK LINKS</h3>
 <div className="links">
-<NavLink> Mock Tests</NavLink>
-<NavLink> Video Turorial</NavLink>
-<NavLink> Master Competitive Programming</NavLink>
-<NavLink> Full Stack Program</NavLink>
-<NavLink> Elevation Academy</NavLink>
-<NavLink> About</NavLink>
-<NavLink> Project</NavLink>
+<NavLink to='/mock-tests'> Mock Tests</NavLink>
+<NavLink to='/preperation-videos'> Video Turorial</NavLink>
+<NavLink to='/master-competitive-programming'> Master Competitive Programming</NavLink>
+<NavLink to='/full-stack-developer'> Full Stack Program</NavLink>
+<NavLink to='/elevation-academy'> Elevation Academy</NavLink>
+<NavLink to='/project/html'> Project</NavLink>
 
 
 

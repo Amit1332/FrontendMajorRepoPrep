@@ -1879,7 +1879,7 @@ width: 45%;
    border-radius: 3px;
    justify-content: center;
    margin-top: 30px;
-    
+    cursor: pointer;
  
    }
   .master-prg .first-sec .top .left p b{
@@ -5904,6 +5904,10 @@ width: 100% !important;
     padding: 10px !important;
   }
 
+  .home .mentor-colleges h1{
+    font-size: 22px;
+  }
+
   .project-sec .left .gallery .left-inner .card-img{
     height: 70px !important;
     width: 70px !important;
@@ -5956,6 +5960,21 @@ width: 100% !important;
       font-size: 18px;
     
     
+    }
+
+    .home .mentor-colleges .cards .card{
+      width: 350px !important;
+    }
+    .home .mentor-colleges .cards .card .card-img{
+      width: 100%;
+      }
+      .home .mentor-colleges .cards .card .card-img img{
+        width: 100%;
+        }
+
+
+    .home .mentor-colleges{
+      padding: 50px 10px;
     }
 
     .elevation-stack .first-sec .top .left .button .btn{

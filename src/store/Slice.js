@@ -3,24 +3,45 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const Slice  =  createSlice({
     name:"Slice",
-    initialState:{},
+    initialState:{
+        isLoading: false,
+      },
     reducers:{
-        getData : (state,action)=>{
-            const name =action.payload.name
-            state={...state,[name]:action.payload.data}
-             return state
+          getDataStart: (state) => {
+            state.isLoading = true;
+            return state
+          },
+          getDataSuccess: (state, action) => {
+            const { name, data } = action.payload;
+            state = { ...state, [name]: data, isLoading: false };
+            return state
+          },
+          getDataError: (state, action) => {
+            state.isLoading = false;
+            const {error} =action.payload
+            console.log(error);
+            return state
 
-        },  postData : (state,action)=>{
-            const name =action.payload.name
-           state={...state,[name]:action.payload.data}
-           return state
+          },
 
-        },
+        //   postDataStart: (state) => {
+        //     state.isLoading = true;
+        //   },
+        //   postDataSuccess: (state, action) => {
+        //     const { name, data } = action.payload;
+        //     state = { ...state, [name]: data, isLoading: false };
+        //   },
+        //   postDataError: (state, action) => {
+        //     state.isLoading = false;
+        //   },
+
+        
         logoutUser:(state,action)=>{
          const token= localStorage.getItem('prepclone')
          if(token){
             localStorage.removeItem("prepclone")
             state.user={}
+            action.payload('/login')
             return state
          }
          return state
@@ -33,5 +54,5 @@ const Slice  =  createSlice({
 
 
 
-export const {getData,postData,logoutUser} =Slice.actions
+export const {getDataStart,getDataSuccess,getDataError,postDataStart,postDataSuccess,postDataError,logoutUser} =Slice.actions
 export default Slice.reducer

@@ -6,7 +6,7 @@ const PaymentSuccess = () => {
   return (
     <div className='payment-success'>
 
-      <div className="button" onClick={()=>navigate('/')}>Go To Home</div>
+      <div className="button" onClick={()=>navigate('/dashboard')}>Go To Dasboard</div>
 
     </div>
   )

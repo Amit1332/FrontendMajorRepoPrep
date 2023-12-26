@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { logoutUser } from '../store/Slice'
 import { useDispatch, useSelector } from 'react-redux'
+import HelperFunction from '../store/actions'
 
 const AppSideBar = () => {
   const [state,setState]=useState(0)
@@ -17,7 +18,8 @@ const AppSideBar = () => {
   const [isLoggedIn,setIsLoggedIn]=useState(false)
 
   const logout =()=>{
-    dispatch(logoutUser())
+    dispatch(logoutUser(Navigate))
+    dispatch(HelperFunction.clearError('user'))
     setIsLoggedIn(false)
   }
 

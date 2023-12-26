@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import masterlogo from "../../../assets/images/master-logo.webp"
 import enroll1 from '../../../assets/images/enroll-1.webp'
 import enroll2 from '../../../assets/images/enroll-2.webp'
@@ -6,14 +6,16 @@ import enroll3 from '../../../assets/images/enroll-3.webp'
 import enroll4 from '../../../assets/images/enroll-4.webp'
 
 
-const FirstSec = () => {
+const FirstSec = ({scrollff}) => {
+   
+    
   return (
     <div className='first-sec'>
         <div className="top">
             <div className="left">
                 <h2>MASTER COMPETITIVE PROGRAMMING</h2>
                 <p>Master Competitive Programming Fom Zero And Become A Top-Rated Coder <b>Under The Guidance Of Top Competitive Programmers</b></p>
-                    <div className="button">
+                    <div className="button" onClick={scrollff}>
                         Enrol Now
                     </div>
             </div>

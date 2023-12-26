@@ -9,10 +9,10 @@ import axios from 'axios'
 const FirstSec = () => {
     const dispatch =useDispatch()
     const data = useSelector((state)=>state.data.courses)
-//   useEffect(() => {
-//     dispatch(HelperFunction.fetchData('courses',"courses"))
+  useEffect(() => {
+    dispatch(HelperFunction.fetchData(`${process.env.REACT_APP_BASE_URL}/courses`,"courses"))
   
-//   }, [])
+  }, [])
 
 
 
@@ -86,17 +86,18 @@ const [items,setItem] =useState({
                   {data&&data.map((elem)=>{
                     return(
                         <>
-                          <label className={`card ${elem._id==items.courseId ? 'bg-primary':''}`} htmlFor='batch1' onClick={()=>setItem({courseId:elem._id,name:elem.name, price:Number(elem.price),quantity:1})}>
+                          <label className={`card ${elem._id==items.courseId ? 'bg-primary':''}`} htmlFor={elem._id} onClick={()=>setItem({courseId:elem._id,name:elem.name, price:Number(elem.price),quantity:1})}>
                       <div className="input-ra">
-                      <input type="radio" id='batch1' name={elem.name} /> <span>{dataFunc(elem.start_data)}</span>
+                      <input type="radio" id={elem._id} name='course' /> <span>{dataFunc(elem.start_data)}</span>
                       </div>
-                        <p>Enrollment Started</p>
+                        <p className={`${elem._id==items.courseId ? 'color-white':''}`}>Enrollment Started</p>
                     </label>
                         
                         </>
                     )
                   })}
                  
+
 
                 </div>
                 <div className="bb-x">

@@ -12,10 +12,9 @@ const MockTest = () => {
 
 useEffect(() => {
   dispatch(HelperFunction.fetchData(`${process.env.REACT_APP_BASE_URL}/test`,"test"))
-
 }, [])
 
-
+console.log(data);
   return (
     <div className='container study-mat'>
       <div className="mock-test">

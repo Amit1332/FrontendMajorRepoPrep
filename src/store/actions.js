@@ -1,27 +1,31 @@
-import { getData } from "./Slice";
 import axios from 'axios'
 import { loadUser } from "./loadUserSlice";
+import { getDataError, getDataStart, getDataSuccess } from './Slice';
 
 const HelperFunction  = {
-    fetchData : (url,name,token)=>async(dispatch)=>{
+    fetchData: (url, name, token) => async (dispatch) => {
         try {
-            const response  =await axios.get(url,{headers: {
-                'Authorization': `Bearer ${token}`,
-              }})
-            dispatch(getData({data:response.data.data,name}))
+          dispatch(getDataStart()); // Dispatch a loading start action        
+          const response  =await axios.get(url,{headers: {
+            'Authorization': `Bearer ${token}`,
+          }})
+          dispatch(getDataSuccess({ data: response.data.data, name })); 
         } catch (error) {
-                console.log(error);
+          dispatch(getDataError(error)); 
         }
+      },
 
-    },
+
     postData : (url,data,name)=>async(dispatch)=>{
         try {
+          dispatch(getDataStart()); // Dispatch a loading start action        
+
             const response  =await axios.post(url,data)
-            dispatch(getData({data:response.data,name}))
+            dispatch(getDataSuccess({data:response.data,name}))
             
         } catch (error) {
-            console.log(error);
-        }
+            dispatch(getDataError(error)); 
+          }
     },
     loadUser : (url,token)=>async(dispatch)=>{
         try {
@@ -31,6 +35,14 @@ const HelperFunction  = {
             dispatch(loadUser(response.data))
         } catch (error) {
            console.log(error);
+        }
+    },
+
+    clearError:(name)=>async(dispatch)=>{
+        try {
+            dispatch(getDataSuccess({data:'',name})) 
+        } catch (error) {
+            
         }
     }
 
