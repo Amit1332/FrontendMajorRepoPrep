@@ -7,15 +7,16 @@ import { useNavigate } from 'react-router-dom'
 const Dashboard = () => {
     const dispatch = useDispatch()
     const token = localStorage.getItem('prepclone')
-    const data = useSelector((state)=> state.data.order)
+    const {order,isLoading} = useSelector((state)=> state.data)
     const Navigate = useNavigate()
 
     useEffect(()=>{
         dispatch(HelperFunction.fetchData(`${process.env.REACT_APP_BASE_URL}/order`,'order',token))
       
-    },[dispatch,token,data])
+    },[dispatch,token,order])
 
-    const [state,setState]=useState(1)
+
+const [state,setState]=useState(1)
   return (
     <div className='container dashboard-sec'>
         <div className="left">
@@ -27,7 +28,8 @@ const Dashboard = () => {
 
             {
                 state===1?
-                data&&data.filter(elem=> elem.courseId).map((item)=>{
+                isLoading ?
+                order&&order.filter(elem=> elem.courseId).map((item)=>{
                     return(
                         <>
                        <div className="card">
@@ -52,14 +54,17 @@ const Dashboard = () => {
                     )
                 })
 
+                : <div className="load-cotent">
+                <img src="/images/loader.webp"  alt="" />
+            </div>
                 :''
             }
 
 
             {
                 state===2 ? 
-                
-                data&&data.filter(elem=> elem.testId).map((item)=>{
+                isLoading ?
+                order&&order.filter(elem=> elem.testId).map((item)=>{
                     console.log(item);
                     return(
                         <>
@@ -85,7 +90,9 @@ const Dashboard = () => {
                     )
                 })
                 
-                
+                : <div className="load-cotent">
+                <img src="/images/loader.webp"  alt="" />
+            </div>
                 :''
             }
 

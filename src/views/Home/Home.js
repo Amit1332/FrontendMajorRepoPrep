@@ -9,6 +9,7 @@ import OurMentors from '../OurMentors'
 import CollegeBanner from './CollegeBanner'
 import MentorColleges from './MentorColleges'
 import PopularBlogs from './PopularBlogs'
+import Professional from './Professional'
 
 const Home = () => {
   const data = [
@@ -61,6 +62,7 @@ const Home = () => {
        <FirstSection/>
        <SecondSection/>
        <ThirdSection/>
+       <Professional/>
        <Instructor/>
        <PlacedStudent/>
        <OurMentors data={data}/>

@@ -8,6 +8,11 @@ const AppHeader = () => {
   const Navigate = useNavigate()
   const [state,setState]=useState(false)
 
+  const navchangetab = ()=>{
+    setState(false)
+
+  }
+
   return (
     <>
     <div className='navbar'>
@@ -29,7 +34,7 @@ const AppHeader = () => {
     </div>
    {
     state===true?
-    <AppSideBar/>
+    <AppSideBar hideseek={navchangetab}/>
     :''
    }
     </>

@@ -9,6 +9,7 @@ const HelperFunction  = {
           const response  =await axios.get(url,{headers: {
             'Authorization': `Bearer ${token}`,
           }})
+
           dispatch(getDataSuccess({ data: response.data.data, name })); 
         } catch (error) {
           dispatch(getDataError(error)); 
@@ -32,7 +33,7 @@ const HelperFunction  = {
             const response  =await axios.get(url,{headers: {
                 'Authorization': `Bearer ${token}`,
               }});
-            dispatch(loadUser(response.data))
+            dispatch(loadUser(response.data.user))
         } catch (error) {
            console.log(error);
         }

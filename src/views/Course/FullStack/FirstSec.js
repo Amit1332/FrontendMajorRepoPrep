@@ -8,7 +8,7 @@ import {loadStripe} from '@stripe/stripe-js';
 import axios from 'axios'
 const FirstSec = () => {
     const dispatch =useDispatch()
-    const data = useSelector((state)=>state.data.courses)
+    const {courses ,isLoading} = useSelector((state)=>state.data)
   useEffect(() => {
     dispatch(HelperFunction.fetchData(`${process.env.REACT_APP_BASE_URL}/courses`,"courses"))
   
@@ -83,7 +83,10 @@ const [items,setItem] =useState({
                     <p>SELECT BATCH</p>
                 </div>
                 <div className="bb-x">
-                  {data&&data.map((elem)=>{
+                  {
+                    !isLoading ? 
+                  
+                  courses&&courses.map((elem)=>{
                     return(
                         <>
                           <label className={`card ${elem._id==items.courseId ? 'bg-primary':''}`} htmlFor={elem._id} onClick={()=>setItem({courseId:elem._id,name:elem.name, price:Number(elem.price),quantity:1})}>
@@ -95,7 +98,14 @@ const [items,setItem] =useState({
                         
                         </>
                     )
-                  })}
+                  })
+                
+                  :
+          <div className="load-cotent">
+              <img src="/images/loader.webp"  alt="" />
+          </div>
+
+                }
                  
 
 

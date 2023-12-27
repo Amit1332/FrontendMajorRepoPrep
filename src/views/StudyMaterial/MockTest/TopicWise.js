@@ -2,7 +2,7 @@ import React from 'react'
 import topicper from "../../../assets/images/topic-per.svg"
 import {loadStripe} from '@stripe/stripe-js';
 import axios from 'axios'
-const TopicWise = ({data}) => {
+const TopicWise = ({data,isLoading}) => {
   let token = localStorage.getItem('prepclone')
 
   const checkout  =async (item)=>{
@@ -28,6 +28,7 @@ const TopicWise = ({data}) => {
   return (
     <div className='past-mock topic-wise'>
     {
+      ! isLoading ?
             data&&data.filter((elem)=> elem.type==='prac').map((item)=>{
                 return(
                     <>
@@ -49,6 +50,12 @@ const TopicWise = ({data}) => {
 
                     </>
                 )})
+
+
+                :
+                <div className="load-cotent">
+                <img src="/images/loader.webp"  alt="" />
+            </div>
 
        }
        

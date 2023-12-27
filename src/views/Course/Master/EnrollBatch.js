@@ -7,7 +7,8 @@ import axios from 'axios'
 
 const EnrollBatch = () => {
     const dispatch =useDispatch()
-    const data = useSelector((state)=>state.data.courses)
+    const {courses ,isLoading} = useSelector((state)=>state.data)
+
   useEffect(() => {
     dispatch(HelperFunction.fetchData(`${process.env.REACT_APP_BASE_URL}/courses`,"courses"))
   
@@ -51,7 +52,8 @@ const EnrollBatch = () => {
        <div className="right">
        <div className="batch">
            {
-            data&&data.map((elem)=>{
+            !isLoading ?
+            courses&&courses.map((elem)=>{
                 return(
                     <>
                      <div className={`card ${elem._id==items.courseId ? 'bg-primary':''}`} onClick={()=>setItem({courseId:elem._id,name:elem.name, price:Number(elem.price),quantity:1})}>
@@ -62,6 +64,11 @@ const EnrollBatch = () => {
                     </>
                 )
             })
+            
+            :
+            <div className="load-cotent">
+                <img src="/images/loader.webp"  alt="" />
+            </div>
            }
            
            

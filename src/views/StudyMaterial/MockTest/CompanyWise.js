@@ -3,8 +3,7 @@ import companylogo from "../../../assets/images/company-img.svg"
 import {loadStripe} from '@stripe/stripe-js';
 import axios from 'axios'
 
-const CompanyWise = ({data}) => {
-  console.log(process.env.REACT_APP_BASE_URL);
+const CompanyWise = ({data ,isLoading}) => {
   let token = localStorage.getItem('prepclone')
 
     const checkout  =async (item)=>{
@@ -28,7 +27,9 @@ const CompanyWise = ({data}) => {
   return (
     <div className='past-mock topic-wise company-wise'>
 
-{
+    {
+      !isLoading?
+
             data&&data.filter((elem)=> elem.type==='company').map((item)=>{
                 return(
                     <>
@@ -48,6 +49,10 @@ const CompanyWise = ({data}) => {
     </>
                 )})
    
+                :
+                <div className="load-cotent">
+                <img src="/images/loader.webp"  alt="" />
+            </div>
    
                 }
    

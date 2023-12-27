@@ -8,12 +8,10 @@ import axios from 'axios'
 
 
 
-const PastTest = ({data}) => {
+const PastTest = ({data ,isLoading}) => {
     let token = localStorage.getItem('prepclone')
   
     const checkout  =async (item)=>{
-     
-
         try {
           const stripe = await loadStripe('pk_test_51OJiJgSHqKSNDjqqHKxgDaTSizL4h16CRajI3zfwiZLZDF76n4MAZok17F7z48Y7XHvRxdZjavEJVHINlFBsEezb007QGqdmuZ');
           const res = await axios.post(`${process.env.REACT_APP_BASE_URL}/order/checkout`,[{testId:item._id, name:item.name, price:Number(item.price),quantity:1}],{headers: {
@@ -35,6 +33,8 @@ const PastTest = ({data}) => {
     <div className='past-mock'>
 
         {
+            !isLoading?
+
             data&&data.filter((elem)=> elem.type==='past').map((item)=>{
                 return(
                     <>
@@ -73,6 +73,12 @@ const PastTest = ({data}) => {
                     </>
                 )
             })
+
+
+            :
+          <div className="load-cotent">
+              <img src="/images/loader.webp"  alt="" />
+          </div>
 
         }
        

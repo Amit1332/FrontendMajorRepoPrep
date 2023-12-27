@@ -20,14 +20,14 @@ const Project = React.lazy(()=>import('./views/Projects/Project'))
 
 function App() {
   const dispatch = useDispatch()
+
         
   let token =localStorage.getItem("prepclone")
-  console.log(process.env.REACT_APP_BASE_URL);
   useEffect(()=>{
     if(token){
         dispatch(HelperFunction.loadUser(`${process.env.REACT_APP_BASE_URL}/user/`,token))
     }
-},[token])
+})  
 
   return (
    <HashRouter>
